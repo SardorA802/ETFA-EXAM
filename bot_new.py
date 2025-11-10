@@ -123,7 +123,8 @@ class MultiLanguageQuizBot:
                 ('aviation', 'questions_aviation.json'),
                 ('aviation_general', 'questions_aviation_general.json'),
                 ('meteorology', 'questions_meteorology.json'),
-                ('navigation', 'questions_navigation.json')
+                ('navigation', 'questions_navigation.json'),
+                ('cessna172', 'questions_cessna172.json')
             ]
             for subj, path in subjects:
                 try:
@@ -321,6 +322,7 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE, use
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'aviation_general'), callback_data="subject_aviation_general")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'meteorology'), callback_data="subject_meteorology")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'navigation'), callback_data="subject_navigation")],
+        [InlineKeyboardButton(quiz_bot.get_text(user_id, 'cessna172'), callback_data="subject_cessna172")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'choose_language'), callback_data="change_language")]
     ]
     
@@ -432,7 +434,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Fan tanlash
     if data.startswith("subject_"):
         subject = data.split("_", 1)[1]  # "_"dan keyin barcha qismni olish
-        if subject == "aviation" or subject == "aviation_general" or subject == "meteorology" or subject == "navigation":
+        if subject == "aviation" or subject == "aviation_general" or subject == "meteorology" or subject == "navigation" or subject == "cessna172":
             if quiz_bot.start_new_quiz(user_id, subject):
                 # Test boshlanganligi haqida loglash (DB)
                 user = query.from_user
