@@ -324,7 +324,7 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE, use
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'meteorology'), callback_data="subject_meteorology")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'navigation'), callback_data="subject_navigation")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'cessna172'), callback_data="subject_cessna172")],
-        [InlineKeyboardButton(quiz_bot.get_text(user_id, 'operational_rules'), callback_data="subject_operational_rules")],
+        [InlineKeyboardButton(quiz_bot.get_text(user_id, 'operations'), callback_data="subject_operations")],
         [InlineKeyboardButton(quiz_bot.get_text(user_id, 'choose_language'), callback_data="change_language")]
     ]
     
@@ -436,7 +436,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Fan tanlash
     if data.startswith("subject_"):
         subject = data.split("_", 1)[1]  # "_"dan keyin barcha qismni olish
-        if subject == "aviation" or subject == "aviation_general" or subject == "meteorology" or subject == "navigation" or subject == "cessna172" or subject == "operational_rules":
+        if subject == "aviation" or subject == "aviation_general" or subject == "meteorology" or subject == "navigation" or subject == "cessna172" or subject == "operations":
             if quiz_bot.start_new_quiz(user_id, subject):
                 # Test boshlanganligi haqida loglash (DB)
                 user = query.from_user
